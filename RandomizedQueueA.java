@@ -128,23 +128,24 @@ public class RandomizedQueueA<Item> implements Iterable<Item> {
             System.out.printf(" %d ", i);
         }
         
-//        rq1.enqueue(22);
-//        rq1.enqueue(33);
-//        rq1.enqueue(56);
-//        rq1.enqueue(89);
-//        rq1.enqueue(17);
-//        System.out.printf("inner loop random items: ");
-//        boolean prnt = false;
-//        for (int i : rq1) {
-//            for (int j : rq1) {
-//                System.out.printf(" %d ", j);
-//            }
-//            System.out.println();
+        // test iterable/iterator with nested loop
+        rq1.enqueue(22);
+        rq1.enqueue(33);
+        rq1.enqueue(56);
+        rq1.enqueue(89);
+        rq1.enqueue(17);
+        System.out.printf("inner loop random items (5 lines):%n");
+        boolean prnt = false;
+        for (int i : rq1) {
+            for (int j : rq1) {
+                System.out.printf(" %d ", j);
+            }
+            System.out.printf("%n %d %n", i);
 //            if(!prnt) { 
 //                System.out.printf("outer loop random items: ");
 //                prnt = true;
 //            }
 //            System.out.printf(" %d ", i);
-//        }
+        }
     }
 }
