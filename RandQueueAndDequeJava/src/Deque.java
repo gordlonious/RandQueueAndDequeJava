@@ -29,10 +29,20 @@ public class Deque<T> implements Iterable<T> {
 		if (item == null)
 			throw new NullPointerException();
 
-		Node temp = new Node(item, null, head);
-		head = temp;
-		if (isEmpty())
+		Node<T> temp = new Node<>(item, null, null);
+		
+		if (isEmpty()) {
+			head = temp;
 			tail = temp;
+		} else if (size == 1) {
+			temp.next = head;
+			head.prev = temp;	
+			head = temp;
+		} else {
+			temp.next = head;
+			head = temp;
+		}
+		
 		size++;
 	}
 
@@ -43,7 +53,7 @@ public class Deque<T> implements Iterable<T> {
 		if (size == 0) {
 			addFirst(item);
 		} else {
-			Node temp = new Node(item, tail, null);
+			Node<T> temp = new Node<>(item, tail, null);
 			tail.next = temp;
 			tail = temp;
 			size++;
@@ -53,15 +63,15 @@ public class Deque<T> implements Iterable<T> {
 	public T removeFirst() {
 		if (size == 0)
 			throw new NoSuchElementException();
-		
-		Node temp = head;
-		
-		if (size == 1)
-		{
+
+		Node<T> temp = head;
+
+		if (size == 1) 
 			head = null;
-		}
+		 else 
+			head = head.next;
 		
-		
+
 		return (T) temp.cargo;
 		// delete and return the item at the front
 	}
@@ -69,7 +79,15 @@ public class Deque<T> implements Iterable<T> {
 	public T removeLast() {
 		if (size == 0)
 			throw new NoSuchElementException();
-		return null;
+
+		Node temp = tail;
+
+		if (size == 1) 
+			tail = null;
+		 else
+			tail = temp.prev;
+
+		return (T) temp.cargo;
 		// delete and return the item at the end
 	}
 
@@ -92,6 +110,7 @@ public class Deque<T> implements Iterable<T> {
 		System.out.println("tail: " + testDeque.tail.cargo + "\n");
 		testDeque.addFirst(4);
 		System.out.println("head: " + testDeque.head.cargo);
+		System.out.println("tail.prev: " + testDeque.tail.prev.cargo);
 		System.out.println("head.next: " + testDeque.head.next.cargo);
 		System.out.println("tail: " + testDeque.tail.cargo + "\n");
 		testDeque.addLast(7);
@@ -115,9 +134,35 @@ public class Deque<T> implements Iterable<T> {
 		System.out.println("tail.prev: " + testDeque.tail.prev.cargo);
 		System.out.println("tail: " + testDeque.tail.cargo + "\n");
 
+		System.out.println("remove first: " + testDeque.removeFirst());
+		System.out.println("head: " + testDeque.head.cargo);
+		System.out.println("head.next: " + testDeque.head.next.cargo);
+		System.out.println("tail.prev: " + testDeque.tail.prev.cargo);
+		System.out.println("tail: " + testDeque.tail.cargo + "\n");
+
 		for (Integer i : testDeque) {
 			System.out.print("|" + i + "| --> ");
 		}
+
+		System.out.println();
+
+		// second test
+		Deque<String> test2 = new Deque<>();
+
+		
+		for (String a : new String[] { "lips", "Francis", "is", "name", "my", "hi", "loose" }) {
+			test2.addFirst(a);	
+		}
+
+		System.out.println(test2.removeFirst() + " " + test2.removeLast());
+		
+		test2.addLast("Bacon");
+
+		for (String s : test2) {
+			System.out.print(s + " ");
+		}
+		
+
 	}
 
 	// node which provides the linked list
