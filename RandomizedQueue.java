@@ -6,10 +6,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import edu.princeton.cs.algs4.StdRandom;
 
-public class RandomizedQueueA<Item> implements Iterable<Item> {
+public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item[] q;
     private int n, first, last;
-    public RandomizedQueueA() {
+    public RandomizedQueue() {
 //        Item[] a = (Item[]) Array.newInstance(q.getClass().getComponentType(), 0); // more type safe than option b ?
 //        this.q = a;
          Item[] b = (Item[]) new Object[2]; // start with two elements so you don't have to resize before inserting the first element
@@ -95,7 +95,7 @@ public class RandomizedQueueA<Item> implements Iterable<Item> {
 
     public static void main(String[] args) {
         // test constructor
-        RandomizedQueueA<Integer> rq1 = new RandomizedQueueA<>();
+        RandomizedQueue<Integer> rq1 = new RandomizedQueue<>();
         System.out.printf("rq has type: %s%n", rq1.getClass().getName());
         
         // test resize/enqueue and sample
@@ -114,7 +114,7 @@ public class RandomizedQueueA<Item> implements Iterable<Item> {
         rq1.dequeue();
         
         // test iterator
-        RandomizedQueueA<Integer> rq2 = new RandomizedQueueA<>();
+        RandomizedQueue<Integer> rq2 = new RandomizedQueue<>();
         rq2.enqueue(3);
         rq2.enqueue(7);
         rq2.enqueue(11);
