@@ -3,26 +3,25 @@ import java.util.NoSuchElementException;
 
 public class Deque<T> implements Iterable<T> {
 
-	Node head;
-	Node tail;
+	Node<T> head;
+	Node<T> tail;
 	int size = 0;
 
 	public Deque() {
 		// construct an empty deque
+		head = null;
+		tail = null;
 	}
 
 	// is the deque empty?
 	public boolean isEmpty() {
-		if (size == 0)
-			return true;
-		return false;
+			return (size == 0);
 
 	}
 
 	// return the number of items on the deque
 	public int size() {
-		return 0;
-
+		return size;
 	}
 
 	public void addFirst(T item) {
@@ -34,14 +33,11 @@ public class Deque<T> implements Iterable<T> {
 		if (isEmpty()) {
 			head = temp;
 			tail = temp;
-		} else if (size == 1) {
+		} else {
 			temp.next = head;
 			head.prev = temp;	
 			head = temp;
-		} else {
-			temp.next = head;
-			head = temp;
-		}
+		} 
 		
 		size++;
 	}
@@ -66,10 +62,11 @@ public class Deque<T> implements Iterable<T> {
 
 		Node<T> temp = head;
 
-		if (size == 1) 
+		if (size == 1) {
 			head = null;
-		 else 
-			head = head.next;
+			tail = null;
+		} else 
+			head = temp.next;
 		
 
 		return (T) temp.cargo;
@@ -82,9 +79,10 @@ public class Deque<T> implements Iterable<T> {
 
 		Node temp = tail;
 
-		if (size == 1) 
+		if (size == 1) {
 			tail = null;
-		 else
+			head = null;
+		}else
 			tail = temp.prev;
 
 		return (T) temp.cargo;
@@ -94,6 +92,13 @@ public class Deque<T> implements Iterable<T> {
 	public static void main(String[] args) {
 		// unit testing
 		Deque<Integer> testDeque = new Deque<>();
+		
+//		testDeque.addFirst(4);
+//		
+//		for (Integer i : testDeque)
+//		{
+//			System.out.println(i);
+//		}
 		try {
 			testDeque.removeFirst();
 		} catch (NoSuchElementException e) {
@@ -157,12 +162,12 @@ public class Deque<T> implements Iterable<T> {
 		System.out.println(test2.removeFirst() + " " + test2.removeLast());
 		
 		test2.addLast("Bacon");
+		test2.addLast("Jr");
 
 		for (String s : test2) {
 			System.out.print(s + " ");
 		}
 		
-
 	}
 
 	// node which provides the linked list
@@ -193,17 +198,17 @@ public class Deque<T> implements Iterable<T> {
 
 		@Override
 		public boolean hasNext() {
-			return (current.next != null);
+			return (current != null);
 		}
 
 		@Override
-		public Object next() {
+		public T next() {
 			Node temp;
 			temp = current;
 			if (!hasNext())
 				throw new NoSuchElementException();
 			current = current.next;
-			return temp.cargo;
+			return (T) temp.cargo;
 		}
 
 		@Override
