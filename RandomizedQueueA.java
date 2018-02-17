@@ -48,7 +48,7 @@ public class RandomizedQueueA<Item> implements Iterable<Item> {
     }
     
     public void enqueue(Item item) {
-        // double size of array if necessary and recopy to front of array
+        if (item == null) throw new NullPointerException("cannot add null to random queue");
         if (n == q.length) resize(2*q.length);   // double size of array if necessary
         q[last++] = item;                        // add item
         if (last == q.length) last = 0;          // wrap-around
@@ -135,17 +135,11 @@ public class RandomizedQueueA<Item> implements Iterable<Item> {
         rq1.enqueue(89);
         rq1.enqueue(17);
         System.out.printf("inner loop random items (5 lines):%n");
-        boolean prnt = false;
         for (int i : rq1) {
             for (int j : rq1) {
                 System.out.printf(" %d ", j);
             }
             System.out.printf("%n %d %n", i);
-//            if(!prnt) { 
-//                System.out.printf("outer loop random items: ");
-//                prnt = true;
-//            }
-//            System.out.printf(" %d ", i);
         }
     }
 }
