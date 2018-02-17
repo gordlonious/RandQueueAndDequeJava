@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
- * @author gordl
+ * @author Gordon Portzline
  */
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.lang.NullPointerException;
-import java.lang.reflect.Array;
 import edu.princeton.cs.algs4.StdRandom;
 
 public class RandomizedQueueA<Item> implements Iterable<Item> {
@@ -53,6 +45,10 @@ public class RandomizedQueueA<Item> implements Iterable<Item> {
         q[last++] = item;                        // add item
         if (last == q.length) last = 0;          // wrap-around
         n++;
+    }
+    
+    public Item sample() {
+        return q[StdRandom.uniform(0, n)];
     }
     
     public Item dequeue() {
@@ -102,12 +98,13 @@ public class RandomizedQueueA<Item> implements Iterable<Item> {
         RandomizedQueueA<Integer> rq1 = new RandomizedQueueA<>();
         System.out.printf("rq has type: %s%n", rq1.getClass().getName());
         
-        // test resize/enqueue
+        // test resize/enqueue and sample
         rq1.enqueue(1);
         rq1.enqueue(2);
         rq1.enqueue(3);
         rq1.enqueue(4);
         rq1.enqueue(5);
+        System.out.println(rq1.sample());
         
         // test dequeue/resize
         rq1.dequeue();
