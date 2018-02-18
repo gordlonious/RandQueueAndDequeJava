@@ -18,7 +18,7 @@ Programming Assignment 2: Deques and Randomized Queues
  *  Explain briefly how you implemented the randomized queue and deque.
  *  Which data structure did you choose (array, linked list, etc.)
  *  and why?
- *****************************************************************************/
+ J+  *****************************************************************************/
 I implemented the Randomized Queue with a resizing array-backed type. I think it made for a very simple Iterator implementation
 where it was easy to pull a random index utilizing the StdRandom library. I was nervous because the resizing array may not be
 considered the most performant data type. However, I believe that all my operations conform to the constant amortized time
@@ -42,7 +42,7 @@ an array field made implementing my Iterator very easy with all requirements con
 
 Randomized Queue:   ~  2.25N (array in the worst-case) + 16 (object overhead) + 12 (3 integer fields) bytes
 
-Deque:              ~  _____  bytes
+Deque:               ~   16 (deque obj)	+ 16 * n (each node object)	+ 16 * n (8 for each reference, forward and back) bytes
 
 
 
@@ -61,7 +61,7 @@ requirements mention "You may assume that 0 ≤ k ≤ N, where N is the number o
  *  classmates, and friends) and attribute them by name.
  *****************************************************************************/
 
-
+ Just Jack Scothorne and myself.
 
 /******************************************************************************
  *  If you worked with a partner, assert below that you followed
