@@ -14,7 +14,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 //        this.q = a;
          Item[] b = (Item[]) new Object[2]; // start with two elements so you don't have to resize before inserting the first element
          this.q = b;
-         // System.out.printf("Constructor values: %d %d %d%n", n, first, last);
     }
     
     public boolean isEmpty() {
@@ -27,11 +26,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     
     // resize the underlying array
     private void resize(int capacity) {
-        System.out.println("RESIZING...");
         assert capacity >= n;
         Item[] temp = (Item[]) new Object[capacity];
         for (int i = 0; i < n; i++) {
-            System.out.printf("Q index is: %d%n", ((first + i) % q.length));
             temp[i] = q[(first + i) % q.length];
         }
         q = temp;
