@@ -3,9 +3,10 @@ import edu.princeton.cs.algs4.StdIn;
 public class Subset {
     public static void main(String[] args) {
         if (args.length > 0 && canParseInt(args[0])) {
-            System.out.printf("Please write in at least %d input elements (separated by a space)%n", Integer.parseInt(args[0]));
+            int inputRequirement = Integer.parseInt(args[0]);
+            System.out.printf("Please write in at least %d input elements (separated by a space)%n", inputRequirement);
             RandomizedQueue<String> rq = new RandomizedQueue<>();
-            for (int i = 0; i < Integer.parseInt(args[0]); i++) {
+            for (int i = 0; i < inputRequirement; i++) {
                 if(StdIn.isEmpty()) break;
                 String s = StdIn.readString();
                 rq.enqueue(s);
